@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors</title>
+</head>
+  <%- include('_navbar') %>
+<body>
+  <div style="margin-top: 20px;">
+    <button class="btn btn-primary"><a href="/posts/Add" style="color: white; text-decoration:solid;">Add Posts</a></button>
+</div><br>
+
+<table class="table" style="width: auto;">
+    <thead>
+        <tr>
+            <th colspan="5" style="text-align: start;">
+                <form action="/Posts" method="GET">
+                    <input type="text" placeholder="Search by title" name="search" style="width: 600px;">
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </form>
+            </th>
+        </tr>
+        <tr>
+                <th scope="col" style="text-align: center;">Title</th>
+                <th scope="col" style="text-align: center;">Difficulty</th>
+                <th scope="col" style="text-align: center;">Total Vote</th>
+                <th scope="col" style="text-align: center;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+           <% data.forEach(element => { %>
+            <tr>
+                <td>
+                    <%= element.title %>
+                    </td>
+                    <td>
+                        <%= element.difficulty %>
+                    </td>
+                    <td style="text-align: center;">
+                        <%= element.totalVote %>
+                    </td>
+                    <td>
+                    <a href="/posts/<%= element.id %>" class="btn btn-primary">Read More</a>
+                    <a href="/posts/<%= element.id %>/edit" class="btn btn-warning">Edit</a>
+                    <a href="/posts/<%= element.id %>/delete" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+           <%}) %>
+        </tbody>
+    </table>
+    <%- include('_bootsrap') %>
+</body>
+</html>

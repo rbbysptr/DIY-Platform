@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Posts</title>
+</head>
+<body>
+    <%- include('_navbar') %>
+    <div class="container"> 
+        <form action="/posts/add" method="POST" class="row g-2">
+     <div class="col-12 text-center" style="margin-top: 50px;">
+        <h1>Add New Post</h1>
+     </div>
+  <div class="col-12">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" name="title" id="title">
+    <% if (error) { %>
+      <p style="color: red;"><%= error.split(",")[0] %></p>
+    <% } %>
+    </div>
+    <div class="col-md-6">
+      <label for="author" class="form-label">Author</label>
+      <select name="author" id="author" class="form-select">
+        <option selected>Choose...</option>
+        <% if (data && data.length > 0) { %>
+          <% data.forEach(element => { %>
+            <option value="<%= element.id %>"><%= element.fullName %></option>
+          <%}) %>
+        <%} %>
+        </select>
+        <% if (error && error.split(",")[1]) { %>
+         <p style="color:red"><%= error.split(",")[1] %></p>
+        <% } %>
+      </div>
+      <div class="col-md-6">
+        <label for="difficulty" class="form-label">Difficulty</label>
+        <select name="difficulty" id="difficulty" class="form-select">
+          <% const level = ["Easy","Medium","Hard"] %>
+          <option selected>Choose...</option>
+          <% level.forEach(el=> { %>
+            <option value="<%= el %>"><%= el %></option>
+            <% }) %>
+          </select>
+          <% if (error) { %>
+          <p style="color: red;"><%= error.split(",")[2] %></p>
+          <% } %>
+        </div>
+        <div class="col-12">
+          <label for="estimatedTime" class="form-label">Estimated Time</label>
+          <input type="number" class="form-control" name="estimatedTime" id="estimatedTime">
+           <% if (error) { %>
+      <p style="color: red;"><%= error.split(",")[3] %></p>
+    <% } %>
+        </div>
+  <div class="col-12">
+    <label for="imageUrl" class="form-label">Image URL</label>
+    <input type="text" class="form-control" name="imageUrl" id="imageUrl">
+     <% if (error) { %>
+      <p style="color: red;"><%= error.split(",")[4] %></p>
+    <% } %>
+  </div>
+  <div class="col-12">
+    <label for="CreatedDate" class="form-label">Created Date</label>
+    <input type="date" class="form-control" name="CreatedDate" id="CreatedDate" placeholder="dd/mm/yyyy">
+     <% if (error) { %>
+      <p style="color: red;"><%= error.split(",")[5] %></p>
+    <% } %>
+  </div>
+   <div class="col-12">
+    <label for="description" class="form-label">Description</label>
+    <textarea class="form-control" name="description" id="description"></textarea>
+     <% if (error) { %>
+      <p style="color: red;"><%= error.split(",")[6] %></p>
+    <% } %>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-dark">Submit</button>
+  </div>
+</form>
+    </div>
+<%- include('_bootsrap') %>
+</body>
+</html>

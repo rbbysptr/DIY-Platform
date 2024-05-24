@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors</title>
+</head>
+  <%- include('_navbar') %>
+<body>
+  <div style="margin-top: 20px;">
+    <button class="btn btn-primary"><a href="/authors/detail" style="color: white; text-decoration:solid;">Show Detail</a></button>
+</div>
+
+    <table class="table" style="width: auto;">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Author</th>
+            </tr>
+        </thead>
+        <tbody>
+           <% data.forEach(element => { %>
+            <tr>
+                <td>
+                    <%= element.id %>
+                    </td>
+                    <td>
+                        <%= element.formatName %>
+                    </td>
+                </tr>
+           <%}) %>
+        </tbody>
+    </table>
+    <%- include('_bootsrap') %>
+</body>
+</html>

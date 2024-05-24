@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Posts</title>
+</head>
+<body>
+    <%- include('_navbar') %>
+    <div class="container">
+        <form action="/posts/<%= dataPost.id %>/edit" method="POST" class="row g-2" >
+  <div class="col-12">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" name="title" id="title" value="<%= dataPost.title %>">
+    <% if (error) { %>
+      <p style="color: red;"><%= error.split(",")[0] %></p>
+    <% } %>
+  </div>
+  <div class="col-md-6">
+    <label for="author" class="form-label">Author</label>
+    <select name="author" id="author" class="form-select">
+        <option selected>Choose...</option>
+        <% if(data && data.length > 0) { %>
+        <% data.forEach(element => { %>
+            <option value="<%= element.id %>" <%= dataPost.AuthorId ? "selected" : "" %>><%= element.fullName %></option>
+        <% }) %>
+        <% } %>
+      </select>
+        <% if (error && error.split(",")[1]) { %>
+         <p style="color:red"><%= error.split(",")[1] %></p>
+        <% } %>
+  </div>
+  <div class="col-md-6">
+    <label for="difficulty" class="form-label">Difficulty</label>
+    <select name="difficulty" id="difficulty" class="form-select">
+       <% const level = ["Easy","Medium","Hard"] %>
+       <option selected>Choose...</option>
+       <% level.forEach(el=> { %>
+        <option value="<%= el %>" <%= dataPost.difficulty == el ? "selected" : "" %>><%= el %></option>
+       <% }) %>
+    </select>
+    <% if (error) { %>
+      <p style="color: red;"><%= error.split(",")[2] %></p>
+    <% } %>
+  </div>
+  <div class="col-12">
+    <label for="estimatedTime" class="form-label">Estimated Time</label>
+    <input type="number" class="form-control" name="estimatedTime" id="estimatedTime" value="<%= dataPost.estimatedTime %>">
+     <% if (error) { %>
+      <p style="color: red;"><%= error.split(",")[3] %></p>
+    <% } %>
+  </div>
+  <div class="col-12">
+    <label for="imageUrl" class="form-label">Image URL</label>
+    <input type="text" class="form-control" name="imageUrl" id="imageUrl"value="<%= dataPost.imageUrl %>">
+     <% if (error) { %>
+      <p style="color: red;"><%= error.split(",")[4] %></p>
+    <% } %>
+  </div>
+  <div class="col-12">
+    <label for="CreatedDate" class="form-label">Created Date</label>
+    <input type="date" class="form-control" name="CreatedDate" id="CreatedDate" value="<%= dataPost.formatCreatedDate %>">
+     <% if (error) { %>
+      <p style="color: red;"><%= error.split(",")[5] %></p>
+    <% } %>
+  </div>
+   <div class="col-12">
+    <label for="description" class="form-label">Description</label>
+    <textarea class="form-control" name="description" id="description" rows="12"><%= dataPost.description%>"</textarea>
+     <% if (error) { %>
+      <p style="color: red;"><%= error.split(",")[6] %></p>
+    <% } %>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-dark">Submit</button>
+  </div>
+</form>
+    </div>
+<%- include('_bootsrap') %>
+</body>
+</html>

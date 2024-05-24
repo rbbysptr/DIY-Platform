@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Authors Detail </title>
+    </head>
+    <%- include('_navbar') %>
+
+    <body>
+        <table class="table" style="width: auto;">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Total Post</th>
+                    <th scope="col">Total Vote</th>
+                    <th scope="col">Average Estimated Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(el=> { %>
+                <tr>
+                    <td><%= el.id %></td>
+                    <td><%= el.formatName %></td>
+                    <% if (el.totalPost === 0) { %>
+                    <td style="color: red;"> <%= el.totalPost %></td>
+                    <% } else { %>
+                    <td><%= el.totalPost %></td>
+                    <% } %>
+                    <% if (el.totalVote === 0) { %>
+                    <td style="color: red;"><%= el.totalVote %></td>
+                    <% } else { %>
+                    <td><%= el.totalVote %></td>
+                    <% } %>
+                    <% if (el.averageTime === 0) { %>
+                    <td style="color: red;"><%= el.averageTime %></td>
+                    <% } else { %>
+                    <td><%= el.averageTime %></td>
+                    <% } %>
+                </tr>
+                <%}) %>
+            </tbody>
+        </table>
+        <%- include('_bootsrap') %>
+    </body>
+
+</html>

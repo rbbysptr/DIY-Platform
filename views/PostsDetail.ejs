@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Detail</title>
+</head>
+<body>
+    <%- include('_navbar') %>
+    <br>
+    <div style="overflow: auto;">
+    <img style="float:left; height: 150px;" src="<%= data.imageUrl %>" alt="">
+    <div>Estimated Time : <%= data.estimatedTime %></div>
+    <div>Difficulty : <%= data.difficulty %></div>
+    <div>Author : <%= data.authorName %></div>
+    <div>Created Date : <%= data.formatCreatedDate  %></div>
+    <div>Total Vote : <%= data.totalVote %></div><br>
+    <div><a href="/posts/<%= data.id %>/vote" class="btn btn-primary">Vote</a></div>
+    <div style="white-space: pre-line; margin-top: 10px;"><%= data.description %></div>
+    </div>
+    
+    
+</body>
+<%- include('_bootsrap') %>
+</html>
